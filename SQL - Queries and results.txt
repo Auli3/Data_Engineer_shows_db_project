@@ -1,0 +1,48 @@
+- Taking into acount only the Netflix platform, who actor appears most times?
+
+SELECT a.actor AS "Actor", count(c.cast_id) AS "Times appeared"
+FROM public.cast c
+	JOIN actor a ON (c.actor_id = a.actor_id)
+	JOIN show s ON (c.production_id = s.production_id)
+WHERE s.platform = 'Netflix'
+GROUP BY "Actor"
+ORDER BY "Times appeared" desc
+LIMIT 1;
+
+Actor who appears more time on Netflix = "Anupam Kher"
+Number of appeareances = 43
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+- Top 10 of most frequent actors in both platformns in 2021.
+
+
+SELECT a.actor AS "Actor", count(c.cast_id) AS "Times appeared"
+FROM public.cast c
+	JOIN actor a ON (c.actor_id = a.actor_id)
+	JOIN show s ON (c.production_id = s.production_id)
+	JOIN calendar ca ON (s.date_added = ca.date)
+WHERE ca.year = '2021'
+GROUP BY "Actor"
+ORDER BY "Times appeared" desc
+LIMIT 10;
+
+Top 10  = {"Julie Tejwani" : 22,
+	"Rupa Bhimani" : 22,
+	"Rajesh Kava" : 21,
+	"Jigna Bhardwaj" : 19,
+	"Vatsal Dubey" : 17,
+	"Swapnil" : 14,
+	"Mousam" : 14,
+	"Fortune Feimster" : 12,
+	"David Spade" : 11,
+	"Blossom Chukwujekwu" : 10}
+
+
+
+
+
+
+
+
+
